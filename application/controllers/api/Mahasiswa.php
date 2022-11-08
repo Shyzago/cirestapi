@@ -10,7 +10,7 @@ class Mahasiswa extends REST_Controller{
     function __construct($config = 'rest')
     {
         parent::__construct($config);
-        $this->load->model('Mahasiswamodel', 'model');
+        $this->load->model('MahasiswaModel', 'model');
     }
 
     public function index_get(){
