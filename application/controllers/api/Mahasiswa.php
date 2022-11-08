@@ -11,14 +11,15 @@ class Mahasiswa extends REST_Controller {
         $this->load->model('MahasiswaModel', 'model');
     }
 
-    public function index_get() {
+    public function index_get(){
         $data = $this->model->getMahasiswa();
+        $data2 = $this->model->getMahasiswa();
+        var_dump($data);
         $this->set_response([
             'status' => TRUE,
-            'code' => 200,
-            'message'=> 'Success',
-            'data'   => $data ,
-            ], REST_Controller::HTTP_OK);
+            'code' => 200
+
+        ]);
     }
 
     public function sendmail_post(){
