@@ -20,31 +20,28 @@ class Mahasiswa extends REST_Controller{
         $this->set_response([
             'status' => TRUE,
             'code' => 200
-
         ]);
     }
 
     public function sendmail_post(){
         $to_email = $this->post('email');
         $this->load->library('email');
-        $this->email->from('sender@emce.salahjurusan.com', 'Mail SalahJurusan');
+        $this->email->from('verification@shyzago.salahjurusan.com', 'Shyzago');
         $this->email->to($to_email);
-        $this->email->subject('Email Confirmation');
+        $this->email->subject('Verification');
         $this->email->message("<a href='https://shyzago.salahjurusan.com/authentication' style='text-decoration: none;'>Verify</a>");
 
-
-        if($this->email->send()){
+        if($this->email->send()) {
             $this->set_response([
                 'status' => TRUE,
                 'code' => 200,
-                'message' => "Pesan telah terkirim ke Email anda, silahkan cek Inbox anda"
+                'message' => "Success"
             ], REST_Controller::HTTP_OK);
-        
-        }else {
+        } else {
             $this->set_response([
                 'status' => FALSE,
                 'code' => 404,
-                'message' => "Email Not Found"
+                'message' => "Failed"
             ], REST_Controller::HTTP_NOT_FOUND);
         }
     }
