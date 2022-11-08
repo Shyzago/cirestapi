@@ -5,10 +5,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . 'libraries/REST_Controller.php';
 require APPPATH . 'libraries/Format.php';
 
-class Mahasiswa extends REST_Controller {
-    function __construct($config = 'rest') {
+class Mahasiswa extends REST_Controller{
+
+    function __construct($config = 'rest')
+    {
         parent::__construct($config);
-        $this->load->model('MahasiswaModel', 'model');
+        $this->load->model('Mahasiswamodel', 'model');
     }
 
     public function index_get(){
@@ -23,27 +25,31 @@ class Mahasiswa extends REST_Controller {
     }
 
     public function sendmail_post(){
-    	$from_email = "verification@shyzago.salahjurusan.com"
         $to_email = $this->post('email');
-        //Load email library
         $this->load->library('email');
-        $this->email->from($from_email, 'Shyzago');
+        $this->email->from('sender@emce.salahjurusan.com', 'Mail SalahJurusan');
         $this->email->to($to_email);
-        $this->email->subject('Verification');
-        $this->email->message("<a href='http://shyzago.salahjurusan.com/authentication'>Verify</a>");
-        //Send mail
-        if($this->email->send()) {
+        $this->email->subject('Email Confirmation');
+        $this->email->message("<a href='https://shyzago.salahjurusan.com/authentication' style='text-decoration: none;'>Verify</a>");
+
+
+        if($this->email->send()){
             $this->set_response([
                 'status' => TRUE,
                 'code' => 200,
-                'message'=> 'Success.'
-                ], REST_Controller::HTTP_OK);
-        } else {
+                'message' => "Pesan telah terkirim ke Email anda, silahkan cek Inbox anda"
+            ], REST_Controller::HTTP_OK);
+        
+        }else {
             $this->set_response([
                 'status' => FALSE,
                 'code' => 404,
-                'message' => 'Failed!'
-                ], REST_Controller::HTTP_NOT_FOUND);
+                'message' => "Email Not Found"
+            ], REST_Controller::HTTP_NOT_FOUND);
         }
-    }
+
+
+    } 
+
+   
 }
