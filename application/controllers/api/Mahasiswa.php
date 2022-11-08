@@ -6,7 +6,6 @@ require APPPATH . 'libraries/REST_Controller.php';
 require APPPATH . 'libraries/Format.php';
 
 class Mahasiswa extends REST_Controller {
-
     function __construct($config = 'rest')
     {
         parent::__construct($config);
@@ -25,18 +24,13 @@ class Mahasiswa extends REST_Controller {
 
     public function sendmail_post()
     {
+		$from_email = 'verification.shyzago@salahjurusan.com';
         $to_email = $this->post('email');
         $this->load->library('email');
-        $this->email->from("verification.shyzago@salahjurusan.com", "Shyzago");
+        $this->email->from($from_email, "Shyzago");
         $this->email->to($to_email);
-        $this->email->subject("Verification");
-        $this->email->message("
-		<center>
-			<div>
-				<a href='https://shyzago.salahjurusan.com/api'>Verify</a>
-			</div>
-		</center>
-		");
+        $this->email->subject('Verification');
+        $this->email->message('Verify your email by click this link https://shyzago.salahjurusan.com/api');
 
 		if($this->email->send()){
 			$this->set_response([
