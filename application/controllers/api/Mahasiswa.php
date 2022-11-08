@@ -47,9 +47,5 @@ class Mahasiswa extends REST_Controller{
                 'message' => "Email Not Found"
             ], REST_Controller::HTTP_NOT_FOUND);
         }
-
-
-    } 
-
-   
+    }
 }
