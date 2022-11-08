@@ -23,7 +23,7 @@ class Mahasiswa extends REST_Controller {
 
     public function sendmail_post(){
     	$from_email = "verification@shyzago.salahjurusan.com"
-        $to_email = $this->input->post('email');
+        $to_email = $this->post('email');
         //Load email library
         $this->load->library('email');
         $this->email->from($from_email, 'Shyzago');
