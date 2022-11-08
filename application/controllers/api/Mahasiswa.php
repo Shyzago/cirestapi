@@ -31,7 +31,7 @@ class Mahasiswa extends REST_Controller {
         $this->email->subject('Verification');
         $this->email->message("
             <center>
-                <h1 style='color: #5C2E7E'>WELCOME TO STELLARIS</h1>
+                <h1 style='color: #5C2E7E'>Test</h1>
                 <img src='https://www.pushengage.com/wp-content/uploads/2022/02/Best-Website-Welcome-Message-Examples.png' alt='welcome' width='850' height='500'>
                 <br>
                 <h3>We hope you can learn something new with us!</h3>
