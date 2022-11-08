@@ -23,35 +23,33 @@ class Mahasiswa extends REST_Controller {
             ], REST_Controller::HTTP_OK);
     }
 
-    public function sendmail_post(){
+    public function sendmail_post()
+    {
         $to_email = $this->post('email');
         $this->load->library('email');
-        $this->email->from('verification.shyzago@salahjurusan.com', 'Shyzago');
+        $this->email->from("verification.shyzago@salahjurusan.com", "Shyzago");
         $this->email->to($to_email);
-        $this->email->subject('Verification');
+        $this->email->subject("Verification");
         $this->email->message("
-            <center>
-                <h1 style='color: #5C2E7E'>Test</h1>
-                <img src='https://www.pushengage.com/wp-content/uploads/2022/02/Best-Website-Welcome-Message-Examples.png' alt='welcome' width='850' height='500'>
-                <br>
-                <h3>We hope you can learn something new with us!</h3>
-                <br>
-                <a href='https://shyzago.salahjurusan.com/mahasiswa/'>Visit Stellaris.site!</a>
-            </center>
-        ");
+		<center>
+			<div>
+				<a href='https://shyzago.salahjurusan.com/api'>Verify</a>
+			</div>
+		</center>
+		");
 
-        if($this->email->send()){
-            $this->set_response([
-                'status' => TRUE,
-                'code' => 200,
-                'message'=> 'Email informasi berhasil dikirim, silahkan periksa inbox email!'
-                ], REST_Controller::HTTP_OK);
-        }else{
-            $this->set_response([
-                'status' => FALSE,
-                'code' => 404,
-                'message' => 'Gagal mengirimkan email informasi'
-                ], REST_Controller::HTTP_NOT_FOUND);
-        }
-    }
+		if($this->email->send()){
+			$this->set_response([
+				'status' => TRUE,
+				'code' => 200,
+                'message'=> 'Success'
+                 ], REST_Controller::HTTP_OK);
+        } else {
+			$this->set_response([
+				'status' => FALSE,
+				'code' => 404,
+				'message'=> 'Failed'
+			], REST_Controller::HTTP_NOT_FOUND);
+		}
+	}
 }
